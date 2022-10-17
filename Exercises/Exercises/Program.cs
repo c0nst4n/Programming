@@ -3,8 +3,15 @@
     internal class Program
     {
         static void Main(string[] args)
+
         {
-            Console.WriteLine(Exercises.GetAreaRec(2, 5));
+          Vector3 aa = new Vector3();
+            aa.x = 45;
+            aa.y = 10;
+            aa.z = 14;
+          
+
+           Console.WriteLine(aa.GetModule());
         }
     }
 }
