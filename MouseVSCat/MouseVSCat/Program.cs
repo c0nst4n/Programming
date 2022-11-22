@@ -1,11 +1,11 @@
-﻿namespace Exercises
+﻿namespace MouseVSCat
 {
     internal class Program
     {
         static void Main(string[] args)
-
         {
-            Console.WriteLine(Exercises.Collatz(10));
+            CatchCatch p = new CatchCatch();
+            DAM.Game.Launch(p);
         }
     }
 }
