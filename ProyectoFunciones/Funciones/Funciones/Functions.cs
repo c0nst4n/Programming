@@ -52,10 +52,69 @@ namespace Funciones
                 return (double.NaN,double.NaN);
 
             double root = (b * b) - 4 * a * c;
+
+            if (root < 0)
+                return (double.NaN, double.NaN);
+
             double divisor = 2 * a;
             double posdivedend = -b + Math.Sqrt(root);
             double negdivedend = -b - Math.Sqrt(root);
             return (posdivedend/divisor, negdivedend/divisor);
+        }
+
+        /*
+         * (obligatorio) Escriba un programa que devuelva un string con
+         * todas las combinaciones posibles
+           al momento de lanzar tres dados de 6 
+           caras. (1, 1, 1) (1, 1, 2) (1, 1, 3), …
+         */
+
+        public static string giveDice()
+        {
+            string result = "";
+            for(int i = 1; i < 7; i++)
+            {
+                for(int j=1; j < 7; j++)
+                {
+
+                    for( int k=1; k < 7; k++)
+                    {
+                        result += "("+ i + ", " + j +", " + k + ")" + ", ";
+                    }
+                }
+            }
+            return result;
+        }
+
+        /*(obligatorio) Es posible expresar 100 como la suma de tres cubos, 
+         * cada uno de los cuales puede
+        ser negativo o positivo. 
+        Sólo se conocen tres maneras de hacerlo. 
+        Una de ellas es la siguiente:
+       1870 ^3 − 1797 ^3 − 903 ^3 = 100
+         */
+
+        public static string oneHundredComb()
+        {
+            //Les he puesto 101 de máximo porque si no mi ordenador no puede, solo tengo 8 de ram y con 10000 no puede
+           string note = "";
+            
+            for(double a = -100; a != 101; a++)
+            {
+                for (double b = -100; b != 101; b++)
+                {
+                    for(double c = -100; c != 101; c++)
+                    {
+                        if ((a * a * a) + (b * b * b) + (c * c * c) == 100)
+                        {
+                            note +="(" + a + "^3" + " + " + b + "^3" + "+" + c + "^3" + " = 100" + ")";
+                        }
+                    }
+                }
+            }
+            return note;
+
+            
         }
     }
 }
