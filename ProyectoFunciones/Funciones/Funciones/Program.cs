@@ -10,7 +10,7 @@
             //Console.WriteLine(Functions.fgequation(4, 2));
             //Console.WriteLine(Functions.sgequation(5, 10, -8));
             //Console.WriteLine(Functions.GetTriangletype(1, 2, 3));
-
+            //Console.WriteLine(Functions.MCD(10, 5));      
             //Console.WriteLine(Functions.MCM(50, 185));
             //Console.WriteLine(Functions.GetNoMultiplesOf3or7(10));
             //Console.WriteLine(Functions.giveDice());
@@ -18,7 +18,12 @@
             //Console.WriteLine(Functions.russianMult(5, 3));
             //Console.WriteLine(Functions.deleteSpaces("          Hola Juan @@@@      ", true, true));
             //Console.WriteLine(Functions.PIAprox(3));
+            //Console.WriteLine(Functions.IterativeFactorial(5));
+            //Console.WriteLine(Functions.IterativeSummatory(5));
+            Console.WriteLine(Functions.PrimePalindromes());
 
+            
+            
         }
     }
 }

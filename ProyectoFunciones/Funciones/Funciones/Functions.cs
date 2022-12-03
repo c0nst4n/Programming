@@ -132,17 +132,29 @@ namespace Funciones
         }
 
         /*Escribir una función que calcule el máximo común divisor de dos números.
-         
+         */
+
+
+
+        /*Escribir una función que calcule el máximo común divisor de dos números.
+         */
+        public static double GetMinor(double a, double b)
+        {
+            if (a < b)
+                return a;
+            return b;
+        }
 
         public static double MCD(double a, double b)
         {
-            double MCD = 0;
+            for(double i = GetMinor(a, b); i > 0; i--)
+            {
+                if ((a % i == 0) && (b % i == 0))
+                    return i;
+            }
 
-            for (double i = 2; (a % i = 0) (b % i = 0); i++)
-
-            return MCD;
+            return 0;
         }
-        */
 
         /*Escribir una función que calcule el mínimo común múltiplo de dos números
          */
@@ -350,6 +362,165 @@ namespace Funciones
             return p * result;
         }
 
+
+        /*Escribir una función que reciba un número entero positivo y 
+         * devuelva su factorial. Hay que hacer
+        esta función de 2 formas, una iterativa y otra recursiva.
+         */
+
+        //iterativa
+
+        public static int IterativeFactorial(int number)
+        {
+            if (number <= 0)
+                return 0;
+
+            int result = 1;
+
+            for(int i = 1; i <= number; i++)
+            {
+                result *= i;
+
+            }
+
+            return result;
+        }
+        
+        //Recursiva
+       /* public static int RecursiveFactorial(int number)
+        {
+            if (number <= 0)
+                return 0;
+            int result = 1;
+            int summ = 1;
+            result *= summ;
+            summ += 1;
+            while (summ < number)
+            {
+                RecursiveFactorial(number);
+                
+            }
+
+            return result;
+
+        }
+        */
+
+        /*Escribir una función que reciba un número entero positivo y devuelva su sumatorio. 
+         * Hay que hacer
+        esta función de 2 formas, una iterativa y otra recursiva.
+         */
+
+        //iterativa
+        public static int IterativeSummatory(int number)
+        {
+            if (number < 0)
+                return 0;
+
+            int result = 0;
+
+            for (int i=0; i <= number; i++)
+            {
+                result += i;
+            }
+
+            return result;
+
+        }
+
+        /* 
+        (obligatorio) Según Sheldon, el mejor número es el 73.
+        73 es el 21er número primo. Su espejo, 37, es el 12mo número primo. 21 es el producto de
+        multiplicar 7 por 3. En binario, 73 es un palíndromo: 1001001.
+        Escriba programas que le permitan responder las siguientes preguntas:
+        ¿Existen otros valores p que sean el n-ésimo primo, tales que espejo(p) es el espejo(n)-ésimo
+         primo?
+         ¿Existen otros valores p que sean el n-ésimo primo, tales que n es el producto de los dígitos de p?
+        ¿Cuáles son los primeros diez números primos cuya representación binaria es un palíndromo?
+
+        */
+
+        public static bool isPrime(int number) //Comprobar si un número es primo
+        {
+            for (int i = 2; i < number; i++)
+            {
+                if (number % i == 0)
+                    return false;
+
+            }
+            return true;
+
+        }
+
+        public static int PrimeOrder(int number) //Saber el orden del número primo
+        {
+            int count = 0;
+            if (isPrime(number))
+                for (int i = 2; count < number; i++)
+                {
+                    if (isPrime(i))
+                        count++;
+                    if (i == number)
+                        return count;
+                }
+            return -1;
+        }
+
+        public static string ToBinary(int number) //Pasas un número a binario
+        {
+            string result = "";
+            while (number > 0)
+            {
+                if (number % 2 == 0)
+                    result = result + "1";
+                if (number % 2 == 1)
+                    result = result + "0";
+                number /= 2;
+
+            }
+
+            return result;
+        }
+
+        public static string RevertString(string word) //Pone un string al revés para poder comprobar palindromos luego
+        {
+            string result = "";
+            for (int i = word.Length - 1; i >= 0; i--)
+            {
+                result += word[i];
+            }
+
+            return result;
+        }
+
+        public static bool CheckPalindrome(int number)//Miramos si el binario de un número es palindromo
+        {
+            string binary = ToBinary(number);
+            string reverse = RevertString(binary);
+
+            if (binary == reverse)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        //¿Cuáles son los primeros diez números primos cuya representación binaria es un palíndromo?
+        public static string PrimePalindromes()
+        {
+            string result = "";
+            int counter = 0;
+            for(int i = 3; counter <= 10; i++)
+            {
+                if ((CheckPalindrome(i) && (isPrime(i))))
+                {
+                    result += i + ", ";
+                    counter ++;
+                }
+            }
+
+            return result;
+        }
 
     }
 }
