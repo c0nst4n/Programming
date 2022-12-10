@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace Funciones
         /*Escribir una función que calcule el área de un círculo y otra que calcule el volumen de un cilindro
           usando la primera función.
          */
-
+        // Nota: 4
         public static double getCircleArea(double radius)
         {
             return 2 * Math.PI * radius;
@@ -30,6 +30,7 @@ namespace Funciones
         Spock” y devuelva quién gana de los dos. Si gana el primer jugador, devuelve un -1, si gana el
         segundo devuelve un 1, si quedan empates, un 0. Se tiene que usar un enum.
          */
+        // Nota: 4
         public enum type
         {
             ROCK,
@@ -60,13 +61,13 @@ namespace Funciones
         /*Desarrolla una función que devuelva el 
          * resultado de una ecuación de primer grado.
          */
-            
+        // Nota: 1, no son enteros
         public static int fgequation(int a, int b) //Hecho con esta estructura en mente de: ax+ b == 0
         {
-            if (a < 1)
+            if (a < 1) // Este check es incorrecto
                 return 0;
              
-            return b - 0 / a;
+            return b - 0 / a; // que!?!??!?
 
 
         }
@@ -75,7 +76,7 @@ namespace Funciones
          * (obligatorio) Desarrolla una función que devuelva el
          * resultado de una ecuación de segundo grado.
          */
-
+        // Nota: 4
         public static (double, double) sgequation(double a, double b, double c)
         {
             if (a == 0)
@@ -97,6 +98,9 @@ namespace Funciones
         entrada los tres lados de un triángulo (son reales), e indique: si acaso el triángulo es inválido; y si
         no lo es, qué tipo de triángulo es (un enum).
          */
+        // Nota: 3
+        
+        // Ponme esto en PascalCase
         public enum triangletype
         {
             EQUILATERAL,
@@ -111,7 +115,7 @@ namespace Funciones
 
             if ((a > b + c) || (b > c + a) || (c > b + a))
                 return triangletype.INVALID;
-            if ((a < 1) ||(b < 1) ||(c < 1))
+            if ((a < 1) ||(b < 1) ||(c < 1)) // muy bien, ..., creo que eres el único que lo ha hecho
                 return triangletype.INVALID;
 
          
@@ -122,7 +126,7 @@ namespace Funciones
             if ((a == c) && (a != b))
                 return triangletype.ISOSCELES;
 
-
+            // Son ||, no &&
             if ((a != b) && (a != c) && (b != c))
                 return triangletype.SCALENE;
 
@@ -138,6 +142,7 @@ namespace Funciones
 
         /*Escribir una función que calcule el máximo común divisor de dos números.
          */
+        // Nota: 3, se hace con enteros
         public static double GetMinor(double a, double b)
         {
             if (a < b)
@@ -158,7 +163,7 @@ namespace Funciones
 
         /*Escribir una función que calcule el mínimo común múltiplo de dos números
          */
-
+        // Nota: 3
         public static double MCM(double a, double b)
         {
             double multiple = 0;
@@ -182,13 +187,14 @@ namespace Funciones
         número n determinado y 
         que no sean múltiplos ni de 3 ni de 7.
          */
-
+        // Nota: 3
         public static string GetNoMultiplesOf3or7(int limit) //¿Que nombre le pondrías a esto siquiera?
         {
             string list = "";
 
             for (int i = 1; i <= limit; i++) //Empezamos por 1 porque no puede dividir entre 0 para preguntar si es multiplo de 3 o 7
             {
+                // Al contrario
                 if ((3%i != 0) && (7%i != 0))
                 {
                     list += i + ", ";
@@ -204,7 +210,7 @@ namespace Funciones
            al momento de lanzar tres dados de 6 
            caras. (1, 1, 1) (1, 1, 2) (1, 1, 3), …
          */
-
+        // Nota: 4
         public static string giveDice()
         {
             string result = "";
@@ -229,7 +235,7 @@ namespace Funciones
         Una de ellas es la siguiente:
        1870 ^3 − 1797 ^3 − 903 ^3 = 100
          */
-
+        // Nota: 4, ..., tienes que decirme si te lo han explicado o te has copiado
         public static string oneHundredComb()
         {
             //Les he puesto 101 de máximo porque si no mi ordenador no puede, solo tengo 8 de ram y con 10000 no puede
@@ -260,7 +266,7 @@ namespace Funciones
         Dicha suma es el producto de los dos números. La siguiente tabla muestra el cálculo realizado
         para multiplicar 37 por 12, cuyo resultado final es 12 + 48 + 384 = 444.
          */
-
+        // Nota: 4
         public static int russianMult(int multiplied, int multiplier)
         {
             if ((multiplied == 0) ||(multiplier <= 0)) //Si el número fuera negativo, ni entraría
@@ -285,6 +291,7 @@ namespace Funciones
         Vamos a necesitar de funciones auxiliares para tener esto organizado, así que dejaré comentarios para
         describir lo que hacen
          */
+        // Nota: 4
 
         
         public static bool checkSpace (char c) //Pregunta si hay un espacio de cualquier tipo o un "@"
@@ -342,7 +349,7 @@ namespace Funciones
         número de iteraciones a realizar. Por ejemplo, si se le pasa un 4, el programa calculará:
         p = 4 * (1/1 - 1/3 + 1/5 - 1/7)
          */
-
+        // Nota: 4
         public static double PIAprox(int iterations)
         {
            
@@ -367,7 +374,7 @@ namespace Funciones
          * devuelva su factorial. Hay que hacer
         esta función de 2 formas, una iterativa y otra recursiva.
          */
-
+        // Nota: 2
         //iterativa
 
         public static int IterativeFactorial(int number)
@@ -410,7 +417,7 @@ namespace Funciones
          * Hay que hacer
         esta función de 2 formas, una iterativa y otra recursiva.
          */
-
+        // Nota: 2
         //iterativa
         public static int IterativeSummatory(int number)
         {
@@ -439,7 +446,9 @@ namespace Funciones
         ¿Cuáles son los primeros diez números primos cuya representación binaria es un palíndromo?
 
         */
+        // Nota: 2
 
+        // PascalCase
         public static bool isPrime(int number) //Comprobar si un número es primo
         {
             for (int i = 2; i < number; i++)
