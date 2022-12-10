@@ -9,12 +9,14 @@ namespace Examen1
     internal class Ejercicios
     {
         //Ejercicio 1
+        // Nota: 1
         public static int Exercise1(int a, int b)
         {
             return (a + 1) / b;
         }
 
         //Ejercicio 2
+        // Nota: 4
         public static int Exercise2(int a, int b, int c, int d, int e, int x)
         {
             int xfour = x * x * x * x;
@@ -26,14 +28,14 @@ namespace Examen1
         }
 
         //Ejercicio 3
-
+        // Nota: 4
         public static int GetMinor(int a, int b)
         {
             if (a < b)
                 return a;
             return b;
         }
-
+        
         public static int Exercise3 (int a, int b, int c, int d, int e, int f, int g, int h, int i, int j)
         {
             int GM = GetMinor(GetMinor(GetMinor(a, b), GetMinor(c, d)), GetMinor(GetMinor(e, f), GetMinor(g, h)));
@@ -48,7 +50,7 @@ namespace Examen1
                 return a;
             return b;
         }
-
+        // Nota: 0
         public static int Exercise4(int a, int b, int c)
         {
             int distone = a - b;
@@ -57,6 +59,7 @@ namespace Examen1
         }
         
         //Ejercicio 9
+        // Nota: 3
         public enum machinestate
         {
             PREPARADO,
@@ -93,6 +96,7 @@ namespace Examen1
       */
 
         //Ejercicio 10
+        // Nota: 4
         public static int DivisorSummatory(int number)
         {
             int result = 0;
@@ -106,6 +110,7 @@ namespace Examen1
         }
 
         //Ejercicio 7
+        // Nota: 0
         public static bool CheckVowel(char c)
         {
             if ((c == 'A') || (c == 'a') || (c == 'e') || (c == 'E') || (c == 'i') || (c == 'I') || (c == 'O') ||
