@@ -7,10 +7,11 @@ namespace ChessTest
     {
         static void Main(string[] args)
         {
-            Bishop b = new Bishop(30, 5, Color.BLACK, FigureType.BISHOP);
-           
+            Board tablero = new Board();
+            Bishop b = new Bishop(2, 3, Color.WHITE, FigureType.BISHOP);
 
-            Console.WriteLine(b.X);
+            Console.WriteLine(tablero.GetFigurePos(b));
+
         }
     }
 }

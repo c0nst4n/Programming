@@ -26,14 +26,15 @@ namespace ChessLib
     {
        internal int x, y;
         Color color;
-        FigureType type;
+        
         public Figure(int x, int y, Color color, FigureType type)
         {
             this.x = x;
             this.y = y;
             this.color = color;
-            this.type = type;
+           
         }
+
 
         public int X
         {
@@ -51,7 +52,19 @@ namespace ChessLib
             }
         }
 
-    
+        public Color GetColor { get { return color; } }
+
+        public struct Position
+        {
+          public  int x;
+          public  int y;
+            public Position(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+
+            }
+        }
 
         public FigureType Type
         {
@@ -62,6 +75,9 @@ namespace ChessLib
         }
 
         public abstract FigureType GetFigureType();
+
+       
+
 
       
     }

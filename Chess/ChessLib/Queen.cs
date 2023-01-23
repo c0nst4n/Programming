@@ -8,9 +8,13 @@ namespace ChessLib
 {
     public class Queen : Figure
     {
+        public Queen(int x, int y, Color color, FigureType type) : base(x, y, color, type)
+        {
+
+        }
         public override FigureType GetFigureType()
         {
-            throw new NotImplementedException();
+            return FigureType.QUEEN;
         }
     }
 }
