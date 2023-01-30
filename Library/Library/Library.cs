@@ -12,7 +12,7 @@ namespace Library
 
         public int BookQuantity 
         {
-            get => _BookList.Count - 1;
+            get => _BookList.Count;
         }
 
         public void AddBook(Book AddBook) 
