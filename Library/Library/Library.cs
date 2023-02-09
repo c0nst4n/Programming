@@ -16,18 +16,50 @@ namespace Library
         }
 
         public void AddBook(Book AddBook) 
-        { 
+        {
+            if (AddBook == null)
+                return;
+
             _BookList.Add(AddBook); 
         }
 
-        public bool HasBook(Book Input)
+        public bool HasBook(string Title)
         {
-            return _BookList.Contains(Input);
+            if (Title == null)
+                return false;
+
+            for (int i=0; i < _BookList.Count; i++) 
+            {
+                if (_BookList[i].Title == Title)
+                    return true;
+
+            }
+
+            return false;
         }
+
+
+        public bool HasAuthor(string Author)
+        {
+            if (Author == null)
+                return false;
+
+            for (int i = 0; i < _BookList.Count; i++)
+            {
+                if (_BookList[i].Author == Author)
+                    return true;
+
+            }
+
+            return false;
+        }
+
 
         public bool HasBookTitleYear(string Title, string Author)
         {
         
+            if (Title == null && Author == null)
+                return false;
 
             for (int i = 0; i < _BookList.Count; i++)
             {
@@ -48,7 +80,7 @@ namespace Library
 
         public bool DeleteBookByTitle(string title)
         {
-            for(int i = 0; i < _BookList.Count - 1; i++)
+            for(int i = 0; i < _BookList.Count; i++)
             {
                 if (_BookList[i].Title == title)
                 {
@@ -134,6 +166,36 @@ namespace Library
             newLibrary._BookList = _BookList;
             return newLibrary;
             
+        }
+
+        public string GetOldestBook()
+        {
+            int Oldest = _BookList[0].Year;
+            string BookTitle = "";
+            for (int i=0; i < _BookList.Count; i++) 
+            {
+                if ( Oldest > _BookList[i].Year)
+                {
+                    Oldest = _BookList[i].Year;
+                    BookTitle = _BookList[i].Title;
+
+                }
+                    
+
+            }
+
+            return BookTitle;
+        }
+
+        public int GetBookAvg()
+        {
+            int Avg = 0;
+            for(int i = 0; i < _BookList.Count; i++)
+            {
+                Avg += _BookList[i].Year;
+            }
+
+            return Avg/_BookList.Count;
         }
 
     }

@@ -49,15 +49,15 @@ namespace Library
 
         public bool IsValid()
         {
-            if ( _year <= 0 || _author == null || _title == null )
-                return false;
-            return true;
+            return _author != null && _title != null && _year <= 0;
         }
 
         public Book CloneBook()
         {
-            Book book = new Book(_year, _author, _title);
-            return book;
+            return new Book(_year, _author, _title);
+            
         }
+
+        
     }
 }
