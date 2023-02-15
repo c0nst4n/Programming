@@ -1,0 +1,25 @@
+﻿<Window x:Class="StudentListChunga.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentListChunga"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="857">
+    <Grid Margin="0,10,429,-10" >
+        <StackPanel Orientation="Vertical">
+            <TextBlock TextWrapping="Wrap" Text="Hello World" Height="32" Width="200" RenderTransformOrigin="0.465,0.485"/>
+            <TextBlock TextWrapping="Wrap" Text="Hello World" Height="35" Width="200"/>
+            <TextBlock TextWrapping="Wrap" Text="Hello World" Height="35" Width="200"/>
+        </StackPanel>
+        <Grid Margin="435,0,-402,0">
+
+        </Grid>
+
+
+
+
+    </Grid>
+
+
+</Window>
