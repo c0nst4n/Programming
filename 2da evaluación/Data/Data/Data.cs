@@ -70,6 +70,7 @@ namespace Data
 
         public int GetDaysInMonth() 
         {
+            // Javi: Este switch puede ser más corto
             switch (_month)
             {
                 case 1:
@@ -117,6 +118,7 @@ namespace Data
            
         }
 
+        // Javi: MAL!!! copy paste del de arriba
         public static int GetDaysInSaidMonth(int SaidMonth)
         {
             switch (SaidMonth)
@@ -169,6 +171,7 @@ namespace Data
 
     
 
+        // Javi: Esto al principio
        public enum DaysOfWeek
         {
             MONDAY,
