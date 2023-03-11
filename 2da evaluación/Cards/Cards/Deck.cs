@@ -11,13 +11,16 @@ namespace Cards
     {
         private List<Paper> _CardList = new List<Paper>();
 
+        // Javi: MAL!!!!!!!
         public List<Paper> CardCount => _CardList;
 
+        // Javi: Mal nombre
         public Paper GetCardPosition(int pos)
         {
             return _CardList[pos];
         }
 
+        // Javi: Función incorrecta, no hace falta un bucle
         public void ExtractCard(int pos)
         {
             for (int i = 0; i < _CardList.Count; i++)
@@ -44,16 +47,19 @@ namespace Cards
             {
                 if (InputCard == _CardList[i])
                     return;
+                // Javi: MAL!!!!!
                 _CardList.Add(InputCard);
             }
         }
 
+        // Javi: Mal nombre
         public void AddCardWStats(int num, CardType type)
         {
             for(int i = 0; i < _CardList.Count; i++)
             {
                 if (_CardList[i].CType == type && _CardList[i].Num == num)
                     return;
+                // Javi: MAL!!!!!!!
                 _CardList.Add(new Paper(num, type));
             }
 
@@ -66,6 +72,7 @@ namespace Cards
             num2 = aux;
         }
 
+        // Javi: Demasiados intros
         public void ShuffleCards()
         {
 
@@ -81,6 +88,7 @@ namespace Cards
 
         }
 
+        // Javi: QUE?!?!?!?!!??!!?!?!?
         public List<Paper> ExtractCardList(int number)
         {
             List<Paper> Extractedcards = new List<Paper>();
