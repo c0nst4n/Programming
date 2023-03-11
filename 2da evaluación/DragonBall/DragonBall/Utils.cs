@@ -17,5 +17,14 @@ namespace DragonBall
 
             return  _random.NextDouble() * (max - min) + min; 
         }
+
+        public static int GetRandomInt(int min, int max)
+        {
+            if (min > max)
+                GetRandomInt(max, min);
+
+            return _random.Next(min, max);
+        }
+        
     }
 }

@@ -8,5 +8,12 @@ namespace DragonBall
 {
     internal interface ITournament
     {
+        public void Init();
+
+        public List<string> Execute();
+
+        public void visit();
+
+        public Fighter Combat(Fighter f1, Fighter f2);
     }
 }
