@@ -14,6 +14,7 @@ namespace Neighbour
         private string _letter;
 
 
+        // Javi: Nombre horroroso
         public int GetPeopleQuantity
         {
             get => people.Count;
@@ -59,6 +60,7 @@ namespace Neighbour
             people.Add(person);
         }
 
+        // Javi: Como que remove!??!?! esta funcion borra!??!?!?
         public int RemovePersonByName(string inputName) 
         {
             for (int i = 0; i < people.Count; i++) 
@@ -70,6 +72,7 @@ namespace Neighbour
             return -1;
         }
 
+        // Javi: Se puede optimizar mucho
         public void RemovePersonByGmail(string inputGmail)
         {
             for(int i=0; i<people.Count;i++) 
