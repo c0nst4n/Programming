@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
+    // Javi: account
     internal class Count
     {
+        // Javi: El orden es: atributos, properties, constructores y funciones
         private string _account_code;
         private string _title;
         private double _quantity;
@@ -15,6 +17,7 @@ namespace Bank
         public string GetName() { return _title; }
         public string SetName(string name) //Duda[6]
         {
+            // Javi: Los setters, en esencia no devuelven nada
            _title = name;
             return _title;
         }
