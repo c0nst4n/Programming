@@ -42,8 +42,10 @@ namespace Rectangle
 
         }
 
+        // Javi: Función incorrecta
         public bool  IntersectsWith(Rectangle other)
         {
+            // Javi: Nombre horroroso
             bool position = true;
             bool size = true;
 
