@@ -1,156 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MineSweeper
 {
-    internal class Board:IBoard
+    public abstract class Board : IBoard
     {
-       private List<Bomb> _bombList= new List<Bomb>();
-       private List<Flag> _flagList= new List<Flag>();
-       private List<Cell> _openCellList = new List<Cell>();
-       private int _width;
-       private int _height;
-       private Random _rand = new Random();
-        //Bombas
-        public int GetBomb(int x, int y)
+        protected int heigth;
+        protected int width;
+
+        
+        public int GetWidth()
         {
-            for (int i = 0; i < _bombList.Count; i++)
+            return width;
+        }
+
+        public int GetHeight()
+        {
+            return heigth;
+        }
+        //Funcones para hijos
+        abstract public void Add();
+
+        abstract public MyCell GetCellAt(int x , int y);
+        public int PosToArray(int x, int y)
+        {
+            return x + y * width;
+        }
+
+        abstract public int CheckListSize();
+        public (int, int) ArrayToPos(int pos)
+        {
+            int y = pos / width;
+            int x = pos % width;
+            return (x, y);
+        }
+
+        public bool IsFirstCell()
+        {
+            for (int i = 0; i < GetWidth(); i++)
             {
-                if (_bombList[i].X == x && _bombList[i].Y == y)
+                for (int j = 0; j < GetHeight(); j++)
                 {
-                    return i;
+                    if (IsCellOpen(i,j))
+                        return false;
                 }
             }
-            return -1;
+            return true;
+        }
+
+        abstract public void RenewList();
+        //Fin de las funciones para hijos
+        public void CreateBoard()
+        {
+            RenewList();
+            for (int i = 0; i < width * heigth; i++)
+            {
+                Add();
+            }
+                
+        }
+
+        
+
+        public void DeleteFlagAt(int x, int y)
+        {
+            GetCellAt(x, y).DeleteFlag();
+        }
+
+        public void Init(int x, int y, int bombCount)
+        {
+            if (!IsFirstCell())
+                return;
+            for (int i = 0; i < bombCount; i++)
+            {
+                int Xrand = Utils.rand.Next(0, width);
+                int Yrand = Utils.rand.Next(0, heigth);
+
+                if (!IsBombAt(Xrand, Yrand) || !(Xrand == x && Yrand == y))
+                {
+                    GetCellAt(x, y).PutBomb();
+                }
+            }
         }
 
         public bool IsBombAt(int x, int y)
         {
-            return (GetBomb(x, y) != -1);
-
-        }
-        public void ActivateBomb(int x, int y)
-        {
-            if (GetBomb(x, y) != -1)
-            {
-                _bombList[GetBomb(x, y)].Activate();
-            }
+            return GetCellAt(x, y).IsBomb;
         }
 
-        public void DeactivateBomb(int x, int y)
-        {
-            if (GetBomb(x, y) != -1)
-            {
-                _bombList[GetBomb(x, y)].Deactivate();
-            }
-        }
-
-        //Banderas
-        public bool IsFlagAt(int x, int y)
-        {
-            if (_flagList.Count != 0)
-            {
-                for (int i = 0; i < _flagList.Count; i++)
-                {
-                    if (_flagList[i].X == x && _flagList[i].Y == y)
-                    {
-                        return true;
-                    }
-                }
-        
-            }
-            return false;
-
-        }
-
-        public void PutFlagAt(int x, int y)
-        {
-            if (!IsFlagAt(x, y))
-            {
-                _flagList.Add(new Flag(x, y));
-                if (IsBombAt(x, y))
-                    DeactivateBomb(x, y);
-            }
-
-        }
-
-        public void DeleteFlagAt(int x, int y)
-        {
-            for (int i = 0; i != _flagList.Count; i++)
-            {
-                if (_flagList[i].X == x && _flagList[i].Y == y)
-                {
-                    if (IsBombAt(x, y))
-                        ActivateBomb(x, y);
-                    _flagList.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-        //Casillas
-
-        public int GetCell(int x, int y)
-        {
-            for (int i = 0; i < _openCellList.Count; i++)
-            {
-                if (_openCellList[i].X == x && _openCellList[i].Y == y)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
         public bool IsCellOpen(int x, int y)
         {
-            if (GetCell(x, y) != -1)
-                return _openCellList[GetCell(x, y)].IsOpen;
-            return false;
+            return GetCellAt(x, y).IsOpen;
+        }
+
+        public bool IsFlagAt(int x, int y)
+        {
+            return GetCellAt(x, y).IsFlag;
         }
 
         public void OpenCell(int x, int y)
         {
-            _openCellList.Add(new Cell(x, y, true));
+            GetCellAt(x, y).Open();
         }
 
-        //Juego
-        public void CreateBoard(int width, int height)
+        public void PutFlagAt(int x, int y)
         {
-            _width = width; 
-            _height = height;
-            _bombList.Clear();
-            _openCellList.Clear();
-            _flagList.Clear();
+            GetCellAt(x, y).PutFlag();
         }
 
-        public void Init(int x, int y, int bombNumber)
+        public void WriteMineSweeper()
         {
-            for(int i = 0; i < bombNumber; i++)
+            IBoard b = this;
+            for (int i = 0; i < GetWidth(); i++)
             {
-                int sum = _rand.Next(-5, 5);
-                _bombList.Add(new Bomb(x + sum, y + sum));
+                for (int j = 0; j < GetHeight(); j++)
+                {
+                    if (IsFlagAt(i, j))
+                        Console.Write("P");
+                    else if (IsBombAt(i, j))
+                        Console.Write("O");
+                    else
+                        Console.Write(b.GetBombProximity(i, j));
+                }
+                Console.Write("\n");
             }
         }
-
-        public bool GetWin()
-        {
-            bool bombs = true;
-            bool cells = true;
-
-            for(int i = 0; i <_bombList.Count; i++)
-            {
-                if (_bombList[i].IsActive == true)
-                    bombs = false;
-            }
-
-            if (_openCellList.Count != _width * _height)
-                cells = false;
-
-            return (bombs == true && cells == true);
-               
-        }
-
     }
 }

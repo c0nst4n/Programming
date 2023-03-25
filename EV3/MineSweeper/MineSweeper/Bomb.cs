@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MineSweeper
 {
-    internal class Bomb:GameObject
+    public class Bomb:GameObject
     {
         private bool _isActive = true;
         public bool IsActive => _isActive;

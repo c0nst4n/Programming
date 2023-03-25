@@ -1,26 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MineSweeper
 {
-    internal interface IBoard
+    public interface IBoard
     {
         //Juego
+
+        int GetWidth();
+
+        int GetHeight();
         void CreateBoard(int w, int h);
         void Init(int x, int y, int bombCount);
 
         bool HasWin() //Debería echar un vistazo a esto
-
         {
-          return GetWin();
+          for (int i = 0; i < GetWidth(); i++)
+            {
+                for(int j = 0; j < GetHeight(); j++)
+                {
+                    if(!IsCellOpen(i, j) && !IsBombAt(i,j))
+                        return false;
+                }
+            }
+            return true;
         }
 
-        bool GetWin();
+        void WriteMineSweeper();
+        
         //Bombas
-        int GetBomb(int x, int y);
         bool IsBombAt(int x, int y);
         int GetBombProximity(int x, int y) 
         {
@@ -47,8 +55,6 @@ namespace MineSweeper
             }
             return counter;
         }
-        void DeactivateBomb(int x, int y);
-        void ActivateBomb(int x, int y);
         //Banderas
         bool IsFlagAt(int x, int y);
         void PutFlagAt(int x, int y);
@@ -56,6 +62,6 @@ namespace MineSweeper
         //Casillas
         bool IsCellOpen(int x, int y);
         void OpenCell(int x, int y);
-        int GetCell(int x, int y);
+
     }
 }

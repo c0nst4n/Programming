@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MineSweeper
 {
-    internal class Cell:GameObject
+    public class Cell:GameObject
     {
         private int _bombs;
         private bool _isOpen = false;
