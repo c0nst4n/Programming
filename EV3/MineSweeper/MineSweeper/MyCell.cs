@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MineSweeper
 {
     public class MyCell
     {
+        #region VARIABLES
         private bool _isFlag = false;
         private bool _isBomb = false;
         private bool _isOpen = false;
+        #endregion
+
+        #region GETTERS
         public bool IsFlag => _isFlag;
         public bool IsBomb => _isBomb;
         public bool IsOpen => _isOpen;
+        #endregion
 
+        #region FUNCIONES
         public void PutBomb()
         {
             _isBomb = true;
@@ -33,5 +35,6 @@ namespace MineSweeper
         {
             _isFlag = false;
         }
+        #endregion
     }
 }

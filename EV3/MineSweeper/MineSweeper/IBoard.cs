@@ -5,15 +5,24 @@ namespace MineSweeper
 {
     public interface IBoard
     {
-        //Juego
+        
+        #region FUNCIONES DEL JUEGO
+        //Pregunta si la casilla que se añade a la lista/array esta dentro del tamaño requerido
+        bool IsCellOnBoard(int x, int y)
+        {
+            return (x >= 0 && y >= 0 && x < GetWidth() && y < GetHeight());
+        }
+        
+        int GetWidth(); //Devuelve la anchura del tablero
+        int GetHeight(); //Devuelve la altura del tablero
+        void CreateBoard(int w, int h); //Crea el tablero con la altura y anchura dada
 
-        int GetWidth();
-
-        int GetHeight();
-        void CreateBoard(int w, int h);
+        //Añade bombas en función de cuantas bombas le digas
+        // y la 1era casilla que abras
         void Init(int x, int y, int bombCount);
-
-        bool HasWin() //Debería echar un vistazo a esto
+        //Pregunta si ha ganado mirando si todas las casillas que no sean bombas
+        //esten abiertas
+        bool HasWin()
         {
           for (int i = 0; i < GetWidth(); i++)
             {
@@ -25,43 +34,49 @@ namespace MineSweeper
             }
             return true;
         }
-
+        //Escribe por pantalla el buscaminas creado con caracteres alfanúmericos
         void WriteMineSweeper();
+        #endregion
         
-        //Bombas
+        #region FUNCIONES DE BOMBAS
+        //Pregunta si hay una bomba en dada posición
         bool IsBombAt(int x, int y);
+        //Devuelve cuantas bombas hay alrededor de la casilla que se le diga
         int GetBombProximity(int x, int y) 
         {
             int counter = 0;
-            while(true)
-            {
-                if (IsBombAt(x + 1, y + 1))
+           
+                if (IsCellOnBoard(x + 1,y + 1) && IsBombAt(x + 1, y + 1))
                     counter++;
-                if (IsBombAt(x, y + 1))
+                if (IsCellOnBoard(x, y + 1) && IsBombAt(x, y + 1))
                     counter++;
-                if (IsBombAt(x, y - 1))
+                if (IsCellOnBoard(x, y - 1) && IsBombAt(x, y - 1))
                     counter++;
-                if (IsBombAt(x + 1, y))
+                if (IsCellOnBoard(x + 1, y) && IsBombAt(x + 1, y))
                     counter++;
-                if (IsBombAt(x - 1, y))
+                if (IsCellOnBoard(x - 1, y) && IsBombAt(x - 1, y))
                     counter++;
-                if (IsBombAt(x - 1, y - 1))
+                if (IsCellOnBoard(x - 1, y - 1) && IsBombAt(x - 1, y - 1))
                     counter++;
-                if (IsBombAt(x + 1, y -1))
+                if (IsCellOnBoard(x + 1, y - 1) && IsBombAt(x + 1, y -1))
                     counter++;
-                if (IsBombAt(x - 1, y + 1))
+                if (IsCellOnBoard(x - 1, y + 1) && IsBombAt(x - 1, y + 1))
                     counter++;
-                break;
-            }
+          
             return counter;
         }
-        //Banderas
-        bool IsFlagAt(int x, int y);
-        void PutFlagAt(int x, int y);
-        void DeleteFlagAt(int x, int y);
-        //Casillas
-        bool IsCellOpen(int x, int y);
-        void OpenCell(int x, int y);
+        #endregion
 
+        #region FUNCIONES DE BANDERAS
+        bool IsFlagAt(int x, int y); //Pregunta si hay en la posición dada
+        void PutFlagAt(int x, int y); //Pone una bandera en la posición dada
+        void DeleteFlagAt(int x, int y); //Borra una bandera en la posición dada
+        #endregion
+
+        #region FUNCIONES DE CASILLAS
+
+        bool IsCellOpen(int x, int y); //Pregunta si una casilla esta abierta en una posición dada
+        void OpenCell(int x, int y); //Pregunta si la casilla en una posición dada esta abierta
+        #endregion
     }
 }

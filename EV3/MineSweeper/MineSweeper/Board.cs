@@ -4,10 +4,11 @@ namespace MineSweeper
 {
     public abstract class Board : IBoard
     {
+        #region VARIABLES
         protected int heigth;
         protected int width;
-
-        
+        #endregion
+        #region FUNCIONES PARA HIJOS
         public int GetWidth()
         {
             return width;
@@ -17,16 +18,17 @@ namespace MineSweeper
         {
             return heigth;
         }
-        //Funcones para hijos
-        abstract public void Add();
 
-        abstract public MyCell GetCellAt(int x , int y);
-        public int PosToArray(int x, int y)
+
+        abstract public void Add(); //Añade una casilla nueva a la lista o casilla
+
+        abstract public MyCell GetCellAt(int x , int y); //Devuelve una casilla dada su posición
+        public int PosToArray(int x, int y) //Convierte una posición x y en una posición de array/lista
         {
             return x + y * width;
         }
 
-        abstract public int CheckListSize();
+        abstract public int CheckListSize(); //Devuelve el tamaño de la lista/ array
         public (int, int) ArrayToPos(int pos)
         {
             int y = pos / width;
@@ -34,7 +36,7 @@ namespace MineSweeper
             return (x, y);
         }
 
-        public bool IsFirstCell()
+        public bool IsFirstCell() //Pregunta si la casilla que se va ha abrir es la 1era casilla abierta
         {
             for (int i = 0; i < GetWidth(); i++)
             {
@@ -46,13 +48,16 @@ namespace MineSweeper
             }
             return true;
         }
-
+        //Vacía la lista/array
         abstract public void RenewList();
-        //Fin de las funciones para hijos
-        public void CreateBoard()
+        #endregion
+        #region FUNCIONES
+        public void CreateBoard(int w, int h)
         {
+            width = w;
+            heigth = h;
             RenewList();
-            for (int i = 0; i < width * heigth; i++)
+            for (int i = 0; i < w * h; i++)
             {
                 Add();
             }
@@ -70,15 +75,19 @@ namespace MineSweeper
         {
             if (!IsFirstCell())
                 return;
+        
             for (int i = 0; i < bombCount; i++)
             {
                 int Xrand = Utils.rand.Next(0, width);
                 int Yrand = Utils.rand.Next(0, heigth);
 
-                if (!IsBombAt(Xrand, Yrand) || !(Xrand == x && Yrand == y))
+                if (IsBombAt(Xrand,Yrand) || (Xrand == x && Yrand == y))
                 {
-                    GetCellAt(x, y).PutBomb();
+                    i--;
+                    continue;
                 }
+
+                GetCellAt(Xrand, Yrand).PutBomb();
             }
         }
 
@@ -124,5 +133,6 @@ namespace MineSweeper
                 Console.Write("\n");
             }
         }
+        #endregion
     }
 }
