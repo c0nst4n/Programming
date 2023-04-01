@@ -77,6 +77,8 @@ namespace MineSweeper
 
         bool IsCellOpen(int x, int y); //Pregunta si una casilla esta abierta en una posición dada
         void OpenCell(int x, int y); //Pregunta si la casilla en una posición dada esta abierta
+
+        void CloseCell(int x, int y);
         #endregion
     }
 }

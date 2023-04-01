@@ -13,7 +13,7 @@ namespace MineSweeper
         #region GETTERS
         public bool IsFlag => _isFlag;
         public bool IsBomb => _isBomb;
-        public bool IsOpen => _isOpen;
+        public bool IsOpen => _isOpen;  
         #endregion
 
         #region FUNCIONES
@@ -34,6 +34,11 @@ namespace MineSweeper
         public void DeleteFlag()
         {
             _isFlag = false;
+        }
+
+        public void Close()
+        {
+            _isOpen = false;
         }
         #endregion
     }

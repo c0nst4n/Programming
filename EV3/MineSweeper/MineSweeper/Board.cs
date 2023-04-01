@@ -64,7 +64,10 @@ namespace MineSweeper
                 
         }
 
-        
+        public void CloseCell(int x, int y)
+        {
+            GetCellAt(x,y).Close();
+        }
 
         public void DeleteFlagAt(int x, int y)
         {
@@ -75,6 +78,8 @@ namespace MineSweeper
         {
             if (!IsFirstCell())
                 return;
+            if (bombCount >= width * heigth)
+                throw new Exception();
         
             for (int i = 0; i < bombCount; i++)
             {
