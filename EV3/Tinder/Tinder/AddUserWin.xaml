@@ -1,0 +1,19 @@
+﻿<Window x:Class="Tinder.AddUserWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tinder"
+        mc:Ignorable="d"
+        Title="AddUserWin" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="Nombre" HorizontalAlignment="Center" Margin="0,62,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Width="198" Height="20" />
+        <TextBox x:Name="Edad" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="Edad" VerticalAlignment="Top" Width="198" Height="20" />
+        <TextBox x:Name="Foto" HorizontalAlignment="Center" Margin="0,148,0,0" TextWrapping="Wrap" Text="Foto" VerticalAlignment="Top" Width="198" Height="20" />
+        <TextBox x:Name="Sexo" HorizontalAlignment="Center" Margin="0,197,0,0" TextWrapping="Wrap" Text="Sexo" VerticalAlignment="Top" Width="198" Height="20" />
+        <TextBox x:Name="Descripcion" HorizontalAlignment="Center" Margin="0,288,0,0" TextWrapping="Wrap" Text="Descripcion" VerticalAlignment="Top" Width="198" Height="20" />
+        <TextBox x:Name="Valoracion" HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap" Text="Valoracion" VerticalAlignment="Top" Width="198" Height="20" />
+        <Button  x:Name="Add"  Content="Add" HorizontalAlignment="Left" Margin="360,339,0,0" VerticalAlignment="Top" Height="40" Width="71" Click="add_click"/>
+
+    </Grid>
+</Window>

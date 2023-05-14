@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MontyHall
 {
-   public enum GameResult
+    #region atributos
+    public enum GameResult
     {
         WIN,
         LOSE
@@ -16,10 +17,13 @@ namespace MontyHall
         CAR,
         GOAT
     }
+
     public class Game
     {
         private List<Door> _doorList = new List<Door>();
         private Random _rand= new Random();
+        #endregion
+    #region funciones
         public void Init()
         {
            _doorList.Add(Door.CAR);
@@ -50,5 +54,7 @@ namespace MontyHall
 
             return GameResult.LOSE;
         }
+
     }
 }
+#endregion

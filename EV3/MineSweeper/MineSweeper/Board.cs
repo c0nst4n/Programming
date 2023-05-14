@@ -113,7 +113,29 @@ namespace MineSweeper
 
         public void OpenCell(int x, int y)
         {
+            IBoard board = (IBoard)this;
             GetCellAt(x, y).Open();
+            if (IsCellOpen(x, y) && board.GetBombProximity(x, y) == 0)
+                OpenAround(x,y);
+
+        }
+        
+        public void OpenAround(int x, int y)
+        {
+            IBoard board = (IBoard)this;
+            if (IsCellOpen(x, y)) 
+            {
+                for (int i = x - 1; i <= x + 1; i++)
+                {
+                    for (int j = y - 1; j<= y + 1; j++)
+                    {
+                       if (board.IsCellOnBoard(i, j) && !IsCellOpen(i, j))
+                        {
+                            OpenCell(i, j);
+                        } 
+                    }
+                }
+            }
         }
 
         public void PutFlagAt(int x, int y)

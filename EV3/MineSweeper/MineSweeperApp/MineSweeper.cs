@@ -1,4 +1,5 @@
 ﻿using MineSweeper;
+using OpenTK.Windowing.Common.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,18 @@ using UDK;
 
 namespace MineSweeperApp
 {
+    
     internal class MineSweeper : IGameDelegate
     {
         IBoard board = new ListBoard();
         UDK.IFontFace? font;
         public bool firstClick = true;
+        bool hasLose = false;
+        bool hasWin= false;
         int cellCountWidth = 10;
         int cellCountHeight = 10;
+        IImage win;
+        IImage lose;
 
         public void OnDraw(GameDelegateEvent gameEvent, ICanvas canvas)
         {
@@ -30,8 +36,25 @@ namespace MineSweeperApp
             canvas.Transform.SetTranslation(0, 0);
             canvas.DrawRectangle(rect);
 
-            paintCells(canvas, cellCountWidth, cellCountHeight);
+
             
+            if (!hasWin)
+                paintCells(canvas, cellCountWidth, cellCountHeight);
+            else
+            {
+                canvas.FillShader.SetImage(win, new rgba_f64(1, 1, 1, 1));
+                canvas.Transform.SetIdentity();
+                canvas.DrawRectangle(rect);
+            }
+
+            if (hasLose == true)
+            {
+                canvas.FillShader.SetImage(lose, new rgba_f64(1, 1, 1, 1));
+                canvas.Transform.SetIdentity();
+                canvas.DrawRectangle(rect);
+            }
+
+
         }
 
         private void paintCells(ICanvas canvas,int cellCountWidth, int cellCountHeigth) 
@@ -56,6 +79,8 @@ namespace MineSweeperApp
                             canvas.Transform.Translate(0.3, 0.5);
                             canvas.FillShader.SetColor(new rgba_f64(1, 1, 1, 1));
                             canvas.DrawText(new vec2d_f64(0, 0), board.GetBombProximity(x, y).ToString(), font, new TextMode() { height = 0.2, bottomCoords = false });
+                            if (board.HasWin())
+                                hasWin = true;
                         }
                         else if (board.IsBombAt(x, y))
                         {
@@ -65,6 +90,7 @@ namespace MineSweeperApp
                             canvas.Transform.Translate(0.3, 0.5);
                             canvas.FillShader.SetColor(new rgba_f64(1, 1, 1, 1));
                             canvas.DrawText(new vec2d_f64(0, 0), "B", font, new TextMode() { height = 0.2, bottomCoords = false });
+                            hasLose = true;
                         }
 
                     }
@@ -88,7 +114,7 @@ namespace MineSweeperApp
             var pos = gameEvent.coordinateConversor.ViewToWorld(mouse.X, mouse.Y);
             int X = (int)pos.x;
             int Y = (int)pos.y;
-            if (mouse.IsPressed(MouseButton.Left))
+            if (mouse.IsPressed(MouseButton.Left) && hasLose == false && hasWin == false)
             {
                 if (pos.x < 0 || pos.y < 0 || pos.x > cellCountWidth || pos.y > cellCountHeight)
                 {
@@ -153,10 +179,21 @@ namespace MineSweeperApp
             
 
         }
+        
         public void OnLoad(GameDelegateEvent gameEvent)
         {
+
             board.CreateBoard(cellCountWidth, cellCountHeight);
-            font = gameEvent.canvasContext.CreateFont(CODEC.LoadFontFromFiles("resources/ArialCE.ttf"))?.CreateFontFace(80.0);
+            try
+            {
+                win = gameEvent.canvasContext.LoadImageFromFile("resources/YW.png");
+                font = gameEvent.canvasContext.CreateFont(CODEC.LoadFontFromFiles("resources/ArialCE.ttf"))?.CreateFontFace(80.0);
+                lose = gameEvent.canvasContext.LoadImageFromFile("resources/GM.png");
+            }
+            catch
+            {
+                throw new Exception("error al cargar algo");
+            }
         }
 
         public void OnUnload(GameDelegateEvent gameEvent)
