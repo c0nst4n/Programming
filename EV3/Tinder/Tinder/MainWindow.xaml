@@ -39,6 +39,6 @@
         </ScrollViewer>
         <Button x:Name="delete" Content="delete" Height="30" Width="90" Margin="650, 200, 0, 0" Click="delete_click"/>
         <Button x:Name="add" Content="add" Height="30" Width="90" Margin="650, 300, 0, 0" Click="add_click"/>
-
+        <TextBox x:Name="Searchtb" Margin="372,30,50,332" TextChanged="OnTextChanged"></TextBox>
     </Grid>
 </Window>

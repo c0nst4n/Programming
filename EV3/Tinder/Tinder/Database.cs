@@ -116,5 +116,51 @@ namespace Tinder
             }
 
         }
+
+        public static ObservableCollection<User> Filter(string pattern, int offset, int limit)
+        {
+            ObservableCollection<User> users = new ObservableCollection<User>();
+            try
+            {
+                using (SqlConnection connect = new SqlConnection("server = CONSTANPC\\SQLEXPRESS; database = TINDER; integrated security = true"))
+                {
+
+                    connect.Open();
+                    string user = "SELECT * FROM dbo.searchPerson(@pattern, @offset, @limit)";
+                    using (SqlCommand cmd = new SqlCommand(user, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@pattern", pattern);
+                        cmd.Parameters.AddWithValue("@offset", offset);
+                        cmd.Parameters.AddWithValue("@limit", limit);
+
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+
+                            while (rdr.Read())
+                            {
+                                users.Add(new User()
+                                {
+                                    Id = rdr.GetFieldValue<int>(0),
+                                    name = rdr.GetFieldValue<string>(1),
+                                    age = rdr.GetFieldValue<int>(2),
+                                    description = rdr.GetFieldValue<string>(3),
+                                    gender = rdr.GetFieldValue<string>(4),
+                                    rating = rdr.GetFieldValue<int>(5),
+                                    photo = rdr.GetFieldValue<string>(6)
+                                });
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("NO FUNCIONA" + ex.Message);
+            }
+
+            return users;
+        }
     }
 }

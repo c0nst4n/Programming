@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -69,6 +70,20 @@ namespace Tinder
         {
             Window add = new AddUserWin();
             add.Show();
+        }
+
+        private void OnTextChanged(object sender, TextChangedEventArgs args)
+        {
+            UpdateUser();
+        }
+
+        private async Task UpdateUser()
+        {
+            string pattern = Searchtb.Text;
+            await Task.Delay(2000);
+            if (Searchtb.Text == pattern)
+             ListViewProducts.ItemsSource = AppManager.Instance.FilterUsers(pattern, 0, int.MaxValue);
+
         }
     }
 }

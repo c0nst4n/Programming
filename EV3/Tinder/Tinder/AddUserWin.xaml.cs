@@ -29,5 +29,7 @@ namespace Tinder
             Database.AddUser(Nombre.Text, Edad.Text, Descripcion.Text, Sexo.Text, Valoracion.Text, Foto.Text);
             Close();
         }
+
+
     }
 }
