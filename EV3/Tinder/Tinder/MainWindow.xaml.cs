@@ -46,6 +46,8 @@ namespace Tinder
                           $" Puntuación: {u.rating} \n";
             desc.Text = user;
             setImage(fotanga, new Uri(u.photo));
+
+
             //foto.Initialized initialized= true;
             //ListViewProducts.ItemsSource = userlist;
             id = u.Id;

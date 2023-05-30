@@ -26,7 +26,17 @@
                                 <TextBlock Margin = "5 0" Text="{Binding age}" FontSize="15"/>
                                 <TextBlock Margin = "5" Text="{Binding description}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
                                 <TextBlock Margin = "5" Text="{Binding gender}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                <TextBlock Margin = "5" Text="{Binding rating}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
+                                <Image Source="https://i.ibb.co/ZSXKm6P/star.png">
+                                    <Image.OpacityMask>
+                                        <LinearGradientBrush x:Name="ratingGradient" StartPoint="0,0" EndPoint="{Binding ratingEndpoint}">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="1" Color="Black"/>
+                                                <GradientStop Offset="1" Color="Transparent"/>
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Image.OpacityMask>
+
+                                </Image>
                                 <Button x:Name="desplegar" Content="mas información" Click="desplegar_Click"></Button>
                             </StackPanel>
                         </DataTemplate>
