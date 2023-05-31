@@ -23,7 +23,7 @@ namespace MontyHall
         private List<Door> _doorList = new List<Door>();
         private Random _rand= new Random();
         #endregion
-    #region funciones
+    z#region funciones
         public void Init()
         {
            _doorList.Add(Door.CAR);
