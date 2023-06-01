@@ -24,10 +24,11 @@ namespace Tinder
     {
         ObservableCollection<User> userlist = new ObservableCollection<User>();
         int id;
+
         public MainWindow()
         {
             InitializeComponent();
-           ObservableCollection<User> users = Database.Connect();
+           ObservableCollection<User> users = new ObservableCollection<User>(AppManager.Instance.dbase.Connect());
             ListViewProducts.ItemsSource = users;
            
         }
@@ -65,12 +66,13 @@ namespace Tinder
 
         private void delete_click(object sender, RoutedEventArgs e)
         {
-            Database.DeleteUser(id);
+            AppManager.Instance.dbase.DeleteUser(id);
         }
 
         private void add_click(object sender, RoutedEventArgs e)
         {
-            Window add = new AddUserWin();
+            Window add = new AddUserWin(ListViewProducts);
+
             add.Show();
         }
 

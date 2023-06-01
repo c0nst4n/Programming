@@ -12,17 +12,18 @@ namespace Tinder
         private static AppManager _instance;
 
         public static AppManager Instance => _instance;
-
+        private Database database = new Database();
+        public Database dbase => database;
         static AppManager()
         {
             _instance = new AppManager();
             
         }
 
-        public ObservableCollection<User> FilterUsers(string pattern, int offset, int limit)
+        public ObservableCollection<User> FilterUsers(string pattern = "", int offset = 0, int limit = int.MaxValue)
         {
             
-           return Database.Filter(pattern, offset, limit);
+           return new ObservableCollection<User>(dbase.Filter(pattern, offset, limit));
         }
 
     }

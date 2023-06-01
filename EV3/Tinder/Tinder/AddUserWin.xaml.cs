@@ -19,14 +19,18 @@ namespace Tinder
     /// </summary>
     public partial class AddUserWin : Window
     {
-        public AddUserWin()
+        private ItemsControl _items;
+        public AddUserWin(ItemsControl items)
         {
             InitializeComponent();
+
+            _items = items;
         }
 
         private void add_click(object sender, RoutedEventArgs e)
         {
-            Database.AddUser(Nombre.Text, Edad.Text, Descripcion.Text, Sexo.Text, Valoracion.Text, Foto.Text);
+            AppManager.Instance.dbase.AddUser(Nombre.Text, Edad.Text, Descripcion.Text, Sexo.Text, Valoracion.Text, Foto.Text);
+            _items.ItemsSource = AppManager.Instance.FilterUsers();
             Close();
         }
 

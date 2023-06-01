@@ -15,9 +15,9 @@ namespace Tinder
     {
  
 
-        public static ObservableCollection<User> Connect() 
+        public  List<User> Connect() 
         {
-             ObservableCollection<User> users = new ObservableCollection<User>();
+             List<User> users = new List<User>();
             try
             {
                 using (SqlConnection connect = new SqlConnection("server = CONSTANPC\\SQLEXPRESS; database = TINDER; integrated security = true"))
@@ -71,7 +71,7 @@ namespace Tinder
             return users;
         }
 
-        public static void DeleteUser(int id)
+        public  void DeleteUser(int id)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Tinder
             }
         }
 
-        public static void AddUser(string name, string age, string description, string gender, string rating, string photo)
+        public  void AddUser(string name, string age, string description, string gender, string rating, string photo)
         {
             int Age = Int32.Parse(age);
             int Rating = Int32.Parse(rating);
@@ -117,9 +117,9 @@ namespace Tinder
 
         }
 
-        public static ObservableCollection<User> Filter(string pattern, int offset, int limit)
+        public  List<User> Filter(string pattern = "", int offset = 0, int limit = int.MaxValue)
         {
-            ObservableCollection<User> users = new ObservableCollection<User>();
+            List<User> users = new List<User>();
             try
             {
                 using (SqlConnection connect = new SqlConnection("server = CONSTANPC\\SQLEXPRESS; database = TINDER; integrated security = true"))
