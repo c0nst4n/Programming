@@ -13,6 +13,7 @@ namespace Granja
             return false;
         }
 
+        // Javi: No estoy de acuerdo
         public bool IsTerrestial()
         {
             return true;
