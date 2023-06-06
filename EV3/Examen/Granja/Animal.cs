@@ -57,6 +57,7 @@ namespace Granja
         //    return _type1 == AnimalType.FLYING || _type2 == AnimalType.FLYING;
         //}
 
+        // Javi: Este método no lo quería aquí
         public override string ToString()
         {
             string info = "";
