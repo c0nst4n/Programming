@@ -8,6 +8,6 @@ namespace Granja
 {
     public interface IAnimal
     {
-
+        // Javi: Faltan métodos, ..., cómo sé yo si es volador o no?
     }
 }
