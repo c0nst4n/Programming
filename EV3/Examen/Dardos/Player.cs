@@ -37,6 +37,7 @@ namespace Dardos
                 _skill = 25;
         }
 
+        // Javi: MAL!!!!
         public void Bet(int gamebet)
         {
             if (_coins >= 5)
