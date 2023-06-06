@@ -16,6 +16,7 @@ namespace Granja
 
         public Animal GetAnimalByID(int ID)
         {
+            // Javi: Mal
             if (ID < 0)
                 return null;
             return _animals[ID];
@@ -29,6 +30,7 @@ namespace Granja
 
         public void DeleteAnimal(Animal a)
         {
+            // Javi: Función peligrosa
             if (a != null && _animals.Contains(a))
                 _animals.Remove(a);
         }
@@ -37,5 +39,7 @@ namespace Granja
         {
             return _animals.Count;
         }
+        
+        // Javi: Faltan métodos
     }
 }
