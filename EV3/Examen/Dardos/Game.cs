@@ -80,6 +80,7 @@ namespace Dardos
 
         public void GiveGrandiousArrows()
         {
+            // Javi: No está bien
             for(int i = 0; i < _players.Count; i++)
             {
                 if (_players[i].IsGrandiose)
