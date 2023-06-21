@@ -9,14 +9,35 @@ namespace Granja
 {
     public class Chicken :Flying, ITerrestial 
     {
-        
-        public Chicken(bool IsVaccined, int id, Zone zone, double weight, Date eggDate) : base(IsVaccined, id, zone, weight, eggDate)
-        { 
+        private Date _PasturationDate;
+        public Chicken(bool IsVaccined, string id, Zone zone, double weight, Date eggDate, Date PasturationDate) : base(IsVaccined, id, zone, weight, eggDate)
+        {
+            _PasturationDate = PasturationDate;
         }
 
-        //public Date ReturnDate()
-        //{
-        //    return _eggDate;
-        //}
+        //falta el isterrestial y el isFlying
+            //hecho en la clase padre Flying
+        //sobreescribir el metodo toString modificando valores
+            //Hecho en la clase padre Flying
+
+        public bool IsFlying()
+        {
+            return true;
+        }
+
+        public override bool IsTerrestial()
+        {
+            return true;
+        }
+        public string GetPasturationDate()
+        {
+            return _PasturationDate.ToString();
+        }
+
+        public override string GetInfo()
+        {
+            string datepasting = "La última vez en la que salió a pastar fue: " + GetPasturationDate() + "\n";
+           return base.GetInfo() + datepasting;
+        }
     }
 }

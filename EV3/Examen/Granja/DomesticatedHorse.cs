@@ -9,7 +9,7 @@ namespace Granja
     public class DomesticatedHorse:Horse, ITerrestial
     {
         private Date _domesticationDate;
-        public DomesticatedHorse(bool IsVaccined, int id, Zone zone, double weight, Date domesticationDate) : base(IsVaccined, id, zone, weight)
+        public DomesticatedHorse(bool IsVaccined, string id, Zone zone, double weight, Date PasturationDate, Date domesticationDate) : base(IsVaccined, id, zone, weight, PasturationDate)
         {
             _domesticationDate = domesticationDate;
         }

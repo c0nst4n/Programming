@@ -11,39 +11,59 @@ namespace Dardos
         List<Player> _players = new List<Player>();
 
         private int _bet = 0;
-       
+
         public void InsertPlayer(Player p)
         {
-            if (p != null)
+            if (p != null || !FindPlayer(p))
                 _players.Add(p);
         }
 
-        public void Play()
+        public bool FindPlayer (Player p)
         {
-            if (_players.Count >= 2)
+            for (int i = 0; i < _players.Count; i++)
             {
-                while (IsGameOver() == false)
-                {
-                    PlayRound();
-                    AwardWinner();
-                   if (IsThereGrandious())
-                        GiveGrandiousArrows();
-                    else
-                    {
-                        ResetArrows();
-                    }
-                    ResetGrandious();
-                    ResetScore();
-                    TakeOutPlayers();
-                }
+                if (_players[i] == p)
+                    return true;
             }
+
+            return false;
+        }
+        public string Play()
+        {
+            string winner;
+            while (IsGameOver() == false)
+            {
+                _bet = 0;
+                BetRound();
+                PlayRound();
+                AwardWinner();
+                if (IsThereGrandious())
+                    GiveGrandiousArrows();
+                else
+                    ResetArrows();
+
+                ResetGrandious();
+                ResetScore();
+                TakeOutPlayers();
+            }
+
+            winner = _players[0].Name;
+            return winner;
         }
         public void PlayRound()
         {
             for (int i = 0; i < _players.Count; i++)
             {
-                _players[i].Bet(_bet);
                 _players[i].Throw();
+            }
+        }
+
+        public void BetRound()
+        {
+            for (int i = 0; i < _players.Count; i++)
+            {
+                _players[i].Bet(ref _bet);
+
             }
         }
         public void AwardWinner()
@@ -60,13 +80,8 @@ namespace Dardos
 
         public bool IsGameOver()
         {
-            for (int i = 0; i < _players.Count; i++)
-            {
-                if (_players[i].Coins == 100 * _players.Count - 1)
-                    return true;
-            }
+            return _players.Count == 1;
 
-            return false;
         }
         public bool IsThereGrandious()
         {
@@ -80,12 +95,12 @@ namespace Dardos
 
         public void GiveGrandiousArrows()
         {
-            for(int i = 0; i < _players.Count; i++)
+            for (int i = 0; i < _players.Count; i++)
             {
                 if (_players[i].IsGrandiose)
                     _players[i].AddArrow();
                 else
-                    _players[i].setArrows(2);
+                    _players[i].SetArrows(2);
             }
         }
 
@@ -101,21 +116,21 @@ namespace Dardos
         {
             for (int i = 0; i < _players.Count; i++)
             {
-                _players[i].setArrows(3);
+                _players[i].SetArrows(3);
             }
         }
 
         public void ResetScore()
         {
-            for(int i = 0; i < _players.Count; i++)
+            for (int i = 0; i < _players.Count; i++)
             {
-                _players[i].resetScore();
+                _players[i].ResetScore();
             }
         }
 
         public void TakeOutPlayers()
         {
-            for(int i = 0; i < _players.Count; i++)
+            for (int i = 0; i < _players.Count; i++)
             {
                 if (_players[i].Coins <= 0)
                 {

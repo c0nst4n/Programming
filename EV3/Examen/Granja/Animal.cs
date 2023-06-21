@@ -6,81 +6,73 @@ using System.Threading.Tasks;
 
 namespace Granja
 {
-    //public enum AnimalType
-    //{
-    //    NONE,
-    //    NORMAL,
-    //    FLYING,
-    //    TERRESTIAL
-    //}
-    public class Animal
+
+    public abstract class Animal
     {
         private bool _isVaccinated;
-        private int _id;
+        
+        
+        private string _id;
         private Zone _zone;
         private double _wieght;
-        //private AnimalType _type1;
-        //private AnimalType _type2;
 
         public bool IsVaccinated => _isVaccinated;
-        public int Id => _id;
+        public string Id => _id;
         public Zone Zone => _zone;
         public double Wieght => _wieght;
-        //public AnimalType Type1 => _type1;
-        //public AnimalType Type2 => _type2;
 
-        public Animal(bool IsVaccined, int id, Zone zone, double weight /*AnimalType t1, AnimalType t2*/)
+
+        public Animal(bool IsVaccined, string id, Zone zone, double weight)
         {
             _isVaccinated = IsVaccined;
             _id = id;
             _zone = zone;
             _wieght = weight;
-            //_type1 = t1;
-            //_type2 = t2;
+
         }
         public void ModifyWight(double modifyer)
         {
-            _wieght += modifyer;
+            _wieght = modifyer;
         }
 
         public void ChangeLocation(Zone newzone)
         {
-            _zone = newzone;
+            if (newzone != null)
+                _zone = newzone;
         }
 
-        //public bool IsTerestial()
-        //{
-        //    return _type1 == AnimalType.TERRESTIAL || _type2 == AnimalType.TERRESTIAL;
-        //} 
-        //public bool IsFlying()
-        //{
-        //    return _type1 == AnimalType.FLYING || _type2 == AnimalType.FLYING;
-        //}
 
-        public override string ToString()
+
+        protected string AnimToString()
         {
             string info = "";
 
-            info += "Su ID es: " + _id;
+            info += "Su ID es: " + _id + "\n";
 
-            if(IsVaccinated)
+            if(_isVaccinated)
                 info += "Esta vacunado \n";
-            if (!IsVaccinated)
+            if (!_isVaccinated)
                 info += "No esta vacunado \n";
 
-            //info +="su tipo es: " + _type1.ToString() + "\n";
 
-            //if (_type2 != AnimalType.NONE)
-            //    info += "su 2do tipo es: " + _type2.ToString() + "\n";
 
-            info += "Esta en " + _zone + "\n";
+            info += "Esta en " + _zone.Name + "\n";
 
-            info +="Pesa: " + _wieght + "\n";
+            info +="Pesa: " + _wieght.ToString() +" kg" +"\n";
 
 
             return info;
         }
 
+        public abstract string GetInfo();
+        public string GetId()
+        {
+            return _id;
+        }
 
+        public  Zone GetZone()
+        {
+            return _zone;
+        }
     }
 }

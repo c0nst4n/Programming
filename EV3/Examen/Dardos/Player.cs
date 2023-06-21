@@ -23,9 +23,8 @@ namespace Dardos
         public int Coins => _coins;
         public bool IsGrandiose => _IsGrandiose;
         public int Score => _score;
-
-
         public int Skill => _skill;
+
         public Player(string name, int id, int skill)
         {
             _name = name;
@@ -33,16 +32,18 @@ namespace Dardos
             _skill = skill;
             if (_skill <= 0)
                 _skill = 10;
-            if (_skill >= 25)
+            if (_skill > 25)
                 _skill = 25;
         }
 
-        public void Bet(int gamebet)
+        //modificar funcion para que devuelva un entero o usar un ref
+        //He puesto un ref 
+        public void Bet(ref int gamebet)
         {
             if (_coins >= 5)
             {
                 int bet = _rand.Next(5, _coins);
-               _coins -= bet;
+                _coins -= bet;
                 gamebet += bet;
             }
             else
@@ -53,7 +54,7 @@ namespace Dardos
             }
         }
 
-        public void resetScore()
+        public void ResetScore()
         {
             _score = 0;
         }
@@ -66,25 +67,25 @@ namespace Dardos
 
                 if (shot == 0)
                     _score += 0;
-                if (shot <= 1 && shot >= 30)
+                else if (shot >= 1 && shot <= 30)
                     _score += 1;
-                if (shot <= 30 && shot >= 60)
+                else if (shot >= 31 && shot <= 60)
                     _score += 5;
-                if (shot <= 60 && shot >= 90)
+                else if (shot >= 61 && shot <= 90)
                     _score += 10;
-                if (shot <= 90 && shot >= 100)
+                else if (shot >= 91 && shot <= 100)
                     _score += 50;
-                if (shot < 100)
+                else if (shot > 100)
                 {
                     _score += 100;
                     _IsGrandiose = true;
                 }
-                    
+
 
             }
         }
 
-        public void setArrows(int arrowNum)
+        public void SetArrows(int arrowNum)
         {
             _arrows = arrowNum;
         }

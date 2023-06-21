@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Granja
 {
-    public interface ITerrestial
+    public interface ITerrestial:IAnimal
     {
-        public bool IsFlying()
-        {
-            return false;
-        }
+        public string GetPasturationDate();
+      
+        //implementar solo el IsTerrestial
+            //Hecho
 
-        public bool IsTerrestial()
+        bool IAnimal.IsTerrestial()
         {
             return true;
         }

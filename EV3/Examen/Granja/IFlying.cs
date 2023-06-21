@@ -9,17 +9,16 @@ namespace Granja
 {
     public interface IFlying:IAnimal
     {
-        public Date ReturnDate();
+        public string ReturnEggDate();
+        
+        //implementar solo el isFlying
+            //Hecho
 
-        public bool IsFlying()
+        bool IAnimal.IsFlying()
         {
             return true;
         }
 
-        public bool IsTerrestial()
-        {
-            return false;
-        }
 
     }
 }

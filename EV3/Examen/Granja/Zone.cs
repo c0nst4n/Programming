@@ -11,6 +11,9 @@ namespace Granja
         private string _name;
         private string _direction;
 
+        public string Name => _name;
+        public string Direction => _direction;
+
         public Zone(string name, string direction) 
         {
             _name = name;

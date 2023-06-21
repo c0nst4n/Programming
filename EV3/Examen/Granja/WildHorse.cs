@@ -8,7 +8,7 @@ namespace Granja
 {
     public class WildHorse:Horse
     {
-        public WildHorse(bool IsVaccined, int id, Zone zone, double weight) : base(IsVaccined, id, zone, weight)
+        public WildHorse(bool IsVaccined, string id, Zone zone, double weight, Date PasturationDate) : base(IsVaccined, id, zone, weight, PasturationDate)
         {
 
         }
